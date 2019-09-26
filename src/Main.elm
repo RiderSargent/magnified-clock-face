@@ -54,14 +54,10 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         Tick newTime ->
-            ( { model | time = newTime }
-            , Cmd.none
-            )
+            ( { model | time = newTime }, Cmd.none )
 
         AdjustTimeZone newZone ->
-            ( { model | zone = newZone }
-            , Cmd.none
-            )
+            ( { model | zone = newZone }, Cmd.none )
 
 
 
@@ -95,12 +91,17 @@ view model =
         , height "400"
         , Svg.Attributes.style "background-color: #ddd;"
         ]
-        [ circle [ cx "200", cy "200", r "120", fill "#fff" ] []
+        [ viewFace
 
         -- , viewHand 6 60 (hour / 12)
         -- , viewHand 6 90 (minute / 60)
         , viewHand 1 120 (second / 60)
         ]
+
+
+viewFace : Svg msg
+viewFace =
+    circle [ cx "200", cy "200", r "120", fill "#fff" ] []
 
 
 viewHand : Int -> Float -> Float -> Svg msg
