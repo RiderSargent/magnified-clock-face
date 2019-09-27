@@ -105,7 +105,7 @@ viewPortal =
     circle
         [ cx "200"
         , cy "200"
-        , r "120"
+        , r (String.fromInt smallRadius)
         , fill "#aaa"
         , fillOpacity "0.5"
         ]
@@ -127,9 +127,6 @@ viewFace turns =
         yStr =
             200 + length * sin t |> String.fromFloat
 
-        radius =
-            "320"
-
         color =
             "#fff"
 
@@ -146,7 +143,7 @@ viewFace turns =
         [ circle
             [ cx "0"
             , cy "0"
-            , r radius
+            , r (String.fromInt bigRadius)
             , fill color
             ]
             []
@@ -193,10 +190,13 @@ viewMarker : Int -> Int -> Svg msg
 viewMarker length rotation =
     let
         start =
-            -310
+            -260
 
         end =
             start + length
+
+        rotationStr =
+            String.fromInt rotation
     in
     line
         [ x1 "0"
@@ -205,7 +205,7 @@ viewMarker length rotation =
         , y2 (String.fromInt end)
         , stroke "black"
         , strokeWidth "2"
-        , [ "rotate(", String.fromInt rotation, ", 0, 0)" ]
+        , [ "rotate(", rotationStr, ", 0, 0)" ]
             |> List.foldr (++) ""
             |> transform
         ]
@@ -240,3 +240,18 @@ viewHand width length turns =
         , strokeLinecap "round"
         ]
         []
+
+
+bigRadius : Int
+bigRadius =
+    320
+
+
+smallRadius : Int
+smallRadius =
+    120
+
+
+viewportOffset : Int
+viewportOffset =
+    200

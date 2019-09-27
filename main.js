@@ -5445,6 +5445,7 @@ var author$project$Main$update = F2(
 				elm$core$Platform$Cmd$none);
 		}
 	});
+var author$project$Main$bigRadius = 320;
 var elm$core$Basics$negate = function (n) {
 	return -n;
 };
@@ -5474,7 +5475,8 @@ var elm$svg$Svg$Attributes$y1 = _VirtualDom_attribute('y1');
 var elm$svg$Svg$Attributes$y2 = _VirtualDom_attribute('y2');
 var author$project$Main$viewMarker = F2(
 	function (length, rotation) {
-		var start = -310;
+		var start = -260;
+		var rotationStr = elm$core$String$fromInt(rotation);
 		var end = start + length;
 		return A2(
 			elm$svg$Svg$line,
@@ -5494,11 +5496,7 @@ var author$project$Main$viewMarker = F2(
 						elm$core$Basics$append,
 						'',
 						_List_fromArray(
-							[
-								'rotate(',
-								elm$core$String$fromInt(rotation),
-								', 0, 0)'
-							])))
+							['rotate(', rotationStr, ', 0, 0)'])))
 				]),
 			_List_Nil);
 	});
@@ -5514,7 +5512,6 @@ var elm$svg$Svg$Attributes$fill = _VirtualDom_attribute('fill');
 var elm$svg$Svg$Attributes$r = _VirtualDom_attribute('r');
 var author$project$Main$viewFace = function (turns) {
 	var t = (2 * elm$core$Basics$pi) * (turns - 0.25);
-	var radius = '320';
 	var opacity = '0.1';
 	var length = 200;
 	var xStr = elm$core$String$fromFloat(
@@ -5542,7 +5539,8 @@ var author$project$Main$viewFace = function (turns) {
 					[
 						elm$svg$Svg$Attributes$cx('0'),
 						elm$svg$Svg$Attributes$cy('0'),
-						elm$svg$Svg$Attributes$r(radius),
+						elm$svg$Svg$Attributes$r(
+						elm$core$String$fromInt(author$project$Main$bigRadius)),
 						elm$svg$Svg$Attributes$fill(color)
 					]),
 				_List_Nil),
@@ -5611,6 +5609,7 @@ var author$project$Main$viewHand = F3(
 				]),
 			_List_Nil);
 	});
+var author$project$Main$smallRadius = 120;
 var elm$svg$Svg$Attributes$fillOpacity = _VirtualDom_attribute('fill-opacity');
 var author$project$Main$viewPortal = A2(
 	elm$svg$Svg$circle,
@@ -5618,7 +5617,8 @@ var author$project$Main$viewPortal = A2(
 		[
 			elm$svg$Svg$Attributes$cx('200'),
 			elm$svg$Svg$Attributes$cy('200'),
-			elm$svg$Svg$Attributes$r('120'),
+			elm$svg$Svg$Attributes$r(
+			elm$core$String$fromInt(author$project$Main$smallRadius)),
 			elm$svg$Svg$Attributes$fill('#aaa'),
 			elm$svg$Svg$Attributes$fillOpacity('0.5')
 		]),
