@@ -92,9 +92,8 @@ view model =
         , Svg.Attributes.style "background-color: #ddd;"
         ]
         [ viewFace (second / 60)
-        , viewPortal
 
-        -- , viewNumerals
+        -- , viewPortal
         -- , viewHand 6 60 (hour / 12)
         -- , viewHand 6 90 (minute / 60)
         , viewHand 1 120 (second / 60)
@@ -103,7 +102,13 @@ view model =
 
 viewPortal : Svg msg
 viewPortal =
-    circle [ cx "200", cy "200", r "120", fill "#fff" ] []
+    circle
+        [ cx "200"
+        , cy "200"
+        , r "120"
+        , fill "#fff"
+        ]
+        []
 
 
 viewFace : Float -> Svg msg
@@ -130,19 +135,139 @@ viewFace turns =
         opacity =
             "0.1"
     in
-    circle
-        [ cx xStr
-        , cy yStr
-        , r radius
-        , fill color
+    g
+        [ [ "translate(", xStr, ", ", yStr, ")" ]
+            |> List.foldr (++) ""
+            |> transform
         , fillOpacity opacity
         ]
-        []
-
-
-viewNumerals : Svg msg
-viewNumerals =
-    text_ [ x "200", y "200" ] [ text "6" ]
+        [ circle
+            [ cx "0"
+            , cy "0"
+            , r radius
+            , fill color
+            ]
+            []
+        , line
+            [ x1 "0"
+            , y1 "-320"
+            , x2 "0"
+            , y2 "-300"
+            , stroke "black"
+            , strokeWidth "2"
+            ]
+            []
+        , line
+            [ x1 "0"
+            , y1 "-320"
+            , x2 "0"
+            , y2 "-300"
+            , stroke "black"
+            , strokeWidth "2"
+            , transform "rotate(30, 0, 0)"
+            ]
+            []
+        , line
+            [ x1 "0"
+            , y1 "-320"
+            , x2 "0"
+            , y2 "-300"
+            , stroke "black"
+            , strokeWidth "2"
+            , transform "rotate(60, 0, 0)"
+            ]
+            []
+        , line
+            [ x1 "0"
+            , y1 "-320"
+            , x2 "0"
+            , y2 "-300"
+            , stroke "black"
+            , strokeWidth "2"
+            , transform "rotate(90, 0, 0)"
+            ]
+            []
+        , line
+            [ x1 "0"
+            , y1 "-320"
+            , x2 "0"
+            , y2 "-300"
+            , stroke "black"
+            , strokeWidth "2"
+            , transform "rotate(120, 0, 0)"
+            ]
+            []
+        , line
+            [ x1 "0"
+            , y1 "-320"
+            , x2 "0"
+            , y2 "-300"
+            , stroke "black"
+            , strokeWidth "2"
+            , transform "rotate(150, 0, 0)"
+            ]
+            []
+        , line
+            [ x1 "0"
+            , y1 "-320"
+            , x2 "0"
+            , y2 "-300"
+            , stroke "black"
+            , strokeWidth "2"
+            , transform "rotate(180, 0, 0)"
+            ]
+            []
+        , line
+            [ x1 "0"
+            , y1 "-320"
+            , x2 "0"
+            , y2 "-300"
+            , stroke "black"
+            , strokeWidth "2"
+            , transform "rotate(210, 0, 0)"
+            ]
+            []
+        , line
+            [ x1 "0"
+            , y1 "-320"
+            , x2 "0"
+            , y2 "-300"
+            , stroke "black"
+            , strokeWidth "2"
+            , transform "rotate(240, 0, 0)"
+            ]
+            []
+        , line
+            [ x1 "0"
+            , y1 "-320"
+            , x2 "0"
+            , y2 "-300"
+            , stroke "black"
+            , strokeWidth "2"
+            , transform "rotate(270, 0, 0)"
+            ]
+            []
+        , line
+            [ x1 "0"
+            , y1 "-320"
+            , x2 "0"
+            , y2 "-300"
+            , stroke "black"
+            , strokeWidth "2"
+            , transform "rotate(300, 0, 0)"
+            ]
+            []
+        , line
+            [ x1 "0"
+            , y1 "-320"
+            , x2 "0"
+            , y2 "-300"
+            , stroke "black"
+            , strokeWidth "2"
+            , transform "rotate(330, 0, 0)"
+            ]
+            []
+        ]
 
 
 viewHand : Int -> Float -> Float -> Svg msg
