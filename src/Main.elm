@@ -91,17 +91,58 @@ view model =
         , height "400"
         , Svg.Attributes.style "background-color: #ddd;"
         ]
-        [ viewFace
+        [ viewFace (second / 60)
+        , viewPortal
 
+        -- , viewNumerals
         -- , viewHand 6 60 (hour / 12)
         -- , viewHand 6 90 (minute / 60)
         , viewHand 1 120 (second / 60)
         ]
 
 
-viewFace : Svg msg
-viewFace =
+viewPortal : Svg msg
+viewPortal =
     circle [ cx "200", cy "200", r "120", fill "#fff" ] []
+
+
+viewFace : Float -> Svg msg
+viewFace turns =
+    let
+        t =
+            2 * pi * (turns - 0.25)
+
+        length =
+            200
+
+        xStr =
+            200 + length * cos t |> String.fromFloat
+
+        yStr =
+            200 + length * sin t |> String.fromFloat
+
+        radius =
+            "320"
+
+        color =
+            "#f00"
+
+        opacity =
+            "0.1"
+    in
+    circle
+        [ cx xStr
+        , cy yStr
+        , r radius
+        , fill color
+        , fillOpacity opacity
+        ]
+        []
+
+
+viewNumerals : Svg msg
+viewNumerals =
+    text_ [ x "200", y "200" ] [ text "6" ]
 
 
 viewHand : Int -> Float -> Float -> Svg msg

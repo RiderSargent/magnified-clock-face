@@ -5445,6 +5445,10 @@ var author$project$Main$update = F2(
 				elm$core$Platform$Cmd$none);
 		}
 	});
+var elm$core$Basics$cos = _Basics_cos;
+var elm$core$Basics$pi = _Basics_pi;
+var elm$core$Basics$sin = _Basics_sin;
+var elm$core$String$fromFloat = _String_fromNumber;
 var elm$json$Json$Decode$map = _Json_map1;
 var elm$json$Json$Decode$map2 = _Json_map2;
 var elm$json$Json$Decode$succeed = _Json_succeed;
@@ -5465,21 +5469,30 @@ var elm$svg$Svg$circle = elm$svg$Svg$trustedNode('circle');
 var elm$svg$Svg$Attributes$cx = _VirtualDom_attribute('cx');
 var elm$svg$Svg$Attributes$cy = _VirtualDom_attribute('cy');
 var elm$svg$Svg$Attributes$fill = _VirtualDom_attribute('fill');
+var elm$svg$Svg$Attributes$fillOpacity = _VirtualDom_attribute('fill-opacity');
 var elm$svg$Svg$Attributes$r = _VirtualDom_attribute('r');
-var author$project$Main$viewFace = A2(
-	elm$svg$Svg$circle,
-	_List_fromArray(
-		[
-			elm$svg$Svg$Attributes$cx('200'),
-			elm$svg$Svg$Attributes$cy('200'),
-			elm$svg$Svg$Attributes$r('120'),
-			elm$svg$Svg$Attributes$fill('#fff')
-		]),
-	_List_Nil);
-var elm$core$Basics$cos = _Basics_cos;
-var elm$core$Basics$pi = _Basics_pi;
-var elm$core$Basics$sin = _Basics_sin;
-var elm$core$String$fromFloat = _String_fromNumber;
+var author$project$Main$viewFace = function (turns) {
+	var t = (2 * elm$core$Basics$pi) * (turns - 0.25);
+	var radius = '320';
+	var opacity = '0.1';
+	var length = 200;
+	var xStr = elm$core$String$fromFloat(
+		200 + (length * elm$core$Basics$cos(t)));
+	var yStr = elm$core$String$fromFloat(
+		200 + (length * elm$core$Basics$sin(t)));
+	var color = '#f00';
+	return A2(
+		elm$svg$Svg$circle,
+		_List_fromArray(
+			[
+				elm$svg$Svg$Attributes$cx(xStr),
+				elm$svg$Svg$Attributes$cy(yStr),
+				elm$svg$Svg$Attributes$r(radius),
+				elm$svg$Svg$Attributes$fill(color),
+				elm$svg$Svg$Attributes$fillOpacity(opacity)
+			]),
+		_List_Nil);
+};
 var elm$svg$Svg$line = elm$svg$Svg$trustedNode('line');
 var elm$svg$Svg$Attributes$stroke = _VirtualDom_attribute('stroke');
 var elm$svg$Svg$Attributes$strokeLinecap = _VirtualDom_attribute('stroke-linecap');
@@ -5514,6 +5527,16 @@ var author$project$Main$viewHand = F3(
 				]),
 			_List_Nil);
 	});
+var author$project$Main$viewPortal = A2(
+	elm$svg$Svg$circle,
+	_List_fromArray(
+		[
+			elm$svg$Svg$Attributes$cx('200'),
+			elm$svg$Svg$Attributes$cy('200'),
+			elm$svg$Svg$Attributes$r('120'),
+			elm$svg$Svg$Attributes$fill('#fff')
+		]),
+	_List_Nil);
 var elm$svg$Svg$svg = elm$svg$Svg$trustedNode('svg');
 var elm$svg$Svg$Attributes$height = _VirtualDom_attribute('height');
 var elm$svg$Svg$Attributes$style = _VirtualDom_attribute('style');
@@ -5606,7 +5629,8 @@ var author$project$Main$view = function (model) {
 			]),
 		_List_fromArray(
 			[
-				author$project$Main$viewFace,
+				author$project$Main$viewFace(second / 60),
+				author$project$Main$viewPortal,
 				A3(author$project$Main$viewHand, 1, 120, second / 60)
 			]));
 };
