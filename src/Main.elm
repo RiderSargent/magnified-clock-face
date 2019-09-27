@@ -92,8 +92,8 @@ view model =
         , Svg.Attributes.style "background-color: #ddd;"
         ]
         [ viewFace (second / 60)
+        , viewPortal
 
-        -- , viewPortal
         -- , viewHand 6 60 (hour / 12)
         -- , viewHand 6 90 (minute / 60)
         , viewHand 1 120 (second / 60)
@@ -106,7 +106,8 @@ viewPortal =
         [ cx "200"
         , cy "200"
         , r "120"
-        , fill "#fff"
+        , fill "#aaa"
+        , fillOpacity "0.5"
         ]
         []
 
@@ -130,7 +131,7 @@ viewFace turns =
             "320"
 
         color =
-            "#f00"
+            "#fff"
 
         opacity =
             "0.1"
@@ -139,7 +140,8 @@ viewFace turns =
         [ [ "translate(", xStr, ", ", yStr, ")" ]
             |> List.foldr (++) ""
             |> transform
-        , fillOpacity opacity
+
+        -- , fillOpacity opacity
         ]
         [ circle
             [ cx "0"
@@ -148,126 +150,66 @@ viewFace turns =
             , fill color
             ]
             []
-        , line
-            [ x1 "0"
-            , y1 "-320"
-            , x2 "0"
-            , y2 "-300"
-            , stroke "black"
-            , strokeWidth "2"
-            ]
-            []
-        , line
-            [ x1 "0"
-            , y1 "-320"
-            , x2 "0"
-            , y2 "-300"
-            , stroke "black"
-            , strokeWidth "2"
-            , transform "rotate(30, 0, 0)"
-            ]
-            []
-        , line
-            [ x1 "0"
-            , y1 "-320"
-            , x2 "0"
-            , y2 "-300"
-            , stroke "black"
-            , strokeWidth "2"
-            , transform "rotate(60, 0, 0)"
-            ]
-            []
-        , line
-            [ x1 "0"
-            , y1 "-320"
-            , x2 "0"
-            , y2 "-300"
-            , stroke "black"
-            , strokeWidth "2"
-            , transform "rotate(90, 0, 0)"
-            ]
-            []
-        , line
-            [ x1 "0"
-            , y1 "-320"
-            , x2 "0"
-            , y2 "-300"
-            , stroke "black"
-            , strokeWidth "2"
-            , transform "rotate(120, 0, 0)"
-            ]
-            []
-        , line
-            [ x1 "0"
-            , y1 "-320"
-            , x2 "0"
-            , y2 "-300"
-            , stroke "black"
-            , strokeWidth "2"
-            , transform "rotate(150, 0, 0)"
-            ]
-            []
-        , line
-            [ x1 "0"
-            , y1 "-320"
-            , x2 "0"
-            , y2 "-300"
-            , stroke "black"
-            , strokeWidth "2"
-            , transform "rotate(180, 0, 0)"
-            ]
-            []
-        , line
-            [ x1 "0"
-            , y1 "-320"
-            , x2 "0"
-            , y2 "-300"
-            , stroke "black"
-            , strokeWidth "2"
-            , transform "rotate(210, 0, 0)"
-            ]
-            []
-        , line
-            [ x1 "0"
-            , y1 "-320"
-            , x2 "0"
-            , y2 "-300"
-            , stroke "black"
-            , strokeWidth "2"
-            , transform "rotate(240, 0, 0)"
-            ]
-            []
-        , line
-            [ x1 "0"
-            , y1 "-320"
-            , x2 "0"
-            , y2 "-300"
-            , stroke "black"
-            , strokeWidth "2"
-            , transform "rotate(270, 0, 0)"
-            ]
-            []
-        , line
-            [ x1 "0"
-            , y1 "-320"
-            , x2 "0"
-            , y2 "-300"
-            , stroke "black"
-            , strokeWidth "2"
-            , transform "rotate(300, 0, 0)"
-            ]
-            []
-        , line
-            [ x1 "0"
-            , y1 "-320"
-            , x2 "0"
-            , y2 "-300"
-            , stroke "black"
-            , strokeWidth "2"
-            , transform "rotate(330, 0, 0)"
-            ]
-            []
+        , viewMarker 25 0
+        , viewMarker 10 10
+        , viewMarker 10 20
+        , viewMarker 25 30
+        , viewMarker 10 40
+        , viewMarker 10 50
+        , viewMarker 25 60
+        , viewMarker 10 70
+        , viewMarker 10 80
+        , viewMarker 25 90
+        , viewMarker 10 100
+        , viewMarker 10 110
+        , viewMarker 25 120
+        , viewMarker 10 130
+        , viewMarker 10 140
+        , viewMarker 25 150
+        , viewMarker 10 160
+        , viewMarker 10 170
+        , viewMarker 25 180
+        , viewMarker 10 190
+        , viewMarker 10 200
+        , viewMarker 25 210
+        , viewMarker 10 220
+        , viewMarker 10 230
+        , viewMarker 25 240
+        , viewMarker 10 250
+        , viewMarker 10 260
+        , viewMarker 25 270
+        , viewMarker 10 280
+        , viewMarker 10 290
+        , viewMarker 25 300
+        , viewMarker 10 310
+        , viewMarker 10 320
+        , viewMarker 25 330
+        , viewMarker 10 340
+        , viewMarker 10 350
         ]
+
+
+viewMarker : Int -> Int -> Svg msg
+viewMarker length rotation =
+    let
+        start =
+            -310
+
+        end =
+            start + length
+    in
+    line
+        [ x1 "0"
+        , y1 (String.fromInt start)
+        , x2 "0"
+        , y2 (String.fromInt end)
+        , stroke "black"
+        , strokeWidth "2"
+        , [ "rotate(", String.fromInt rotation, ", 0, 0)" ]
+            |> List.foldr (++) ""
+            |> transform
+        ]
+        []
 
 
 viewHand : Int -> Float -> Float -> Svg msg

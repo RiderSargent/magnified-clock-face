@@ -5445,10 +5445,9 @@ var author$project$Main$update = F2(
 				elm$core$Platform$Cmd$none);
 		}
 	});
-var elm$core$Basics$cos = _Basics_cos;
-var elm$core$Basics$pi = _Basics_pi;
-var elm$core$Basics$sin = _Basics_sin;
-var elm$core$String$fromFloat = _String_fromNumber;
+var elm$core$Basics$negate = function (n) {
+	return -n;
+};
 var elm$json$Json$Decode$map = _Json_map1;
 var elm$json$Json$Decode$map2 = _Json_map2;
 var elm$json$Json$Decode$succeed = _Json_succeed;
@@ -5465,14 +5464,7 @@ var elm$virtual_dom$VirtualDom$toHandlerInt = function (handler) {
 	}
 };
 var elm$svg$Svg$trustedNode = _VirtualDom_nodeNS('http://www.w3.org/2000/svg');
-var elm$svg$Svg$circle = elm$svg$Svg$trustedNode('circle');
-var elm$svg$Svg$g = elm$svg$Svg$trustedNode('g');
 var elm$svg$Svg$line = elm$svg$Svg$trustedNode('line');
-var elm$svg$Svg$Attributes$cx = _VirtualDom_attribute('cx');
-var elm$svg$Svg$Attributes$cy = _VirtualDom_attribute('cy');
-var elm$svg$Svg$Attributes$fill = _VirtualDom_attribute('fill');
-var elm$svg$Svg$Attributes$fillOpacity = _VirtualDom_attribute('fill-opacity');
-var elm$svg$Svg$Attributes$r = _VirtualDom_attribute('r');
 var elm$svg$Svg$Attributes$stroke = _VirtualDom_attribute('stroke');
 var elm$svg$Svg$Attributes$strokeWidth = _VirtualDom_attribute('stroke-width');
 var elm$svg$Svg$Attributes$transform = _VirtualDom_attribute('transform');
@@ -5480,6 +5472,46 @@ var elm$svg$Svg$Attributes$x1 = _VirtualDom_attribute('x1');
 var elm$svg$Svg$Attributes$x2 = _VirtualDom_attribute('x2');
 var elm$svg$Svg$Attributes$y1 = _VirtualDom_attribute('y1');
 var elm$svg$Svg$Attributes$y2 = _VirtualDom_attribute('y2');
+var author$project$Main$viewMarker = F2(
+	function (length, rotation) {
+		var start = -310;
+		var end = start + length;
+		return A2(
+			elm$svg$Svg$line,
+			_List_fromArray(
+				[
+					elm$svg$Svg$Attributes$x1('0'),
+					elm$svg$Svg$Attributes$y1(
+					elm$core$String$fromInt(start)),
+					elm$svg$Svg$Attributes$x2('0'),
+					elm$svg$Svg$Attributes$y2(
+					elm$core$String$fromInt(end)),
+					elm$svg$Svg$Attributes$stroke('black'),
+					elm$svg$Svg$Attributes$strokeWidth('2'),
+					elm$svg$Svg$Attributes$transform(
+					A3(
+						elm$core$List$foldr,
+						elm$core$Basics$append,
+						'',
+						_List_fromArray(
+							[
+								'rotate(',
+								elm$core$String$fromInt(rotation),
+								', 0, 0)'
+							])))
+				]),
+			_List_Nil);
+	});
+var elm$core$Basics$cos = _Basics_cos;
+var elm$core$Basics$pi = _Basics_pi;
+var elm$core$Basics$sin = _Basics_sin;
+var elm$core$String$fromFloat = _String_fromNumber;
+var elm$svg$Svg$circle = elm$svg$Svg$trustedNode('circle');
+var elm$svg$Svg$g = elm$svg$Svg$trustedNode('g');
+var elm$svg$Svg$Attributes$cx = _VirtualDom_attribute('cx');
+var elm$svg$Svg$Attributes$cy = _VirtualDom_attribute('cy');
+var elm$svg$Svg$Attributes$fill = _VirtualDom_attribute('fill');
+var elm$svg$Svg$Attributes$r = _VirtualDom_attribute('r');
 var author$project$Main$viewFace = function (turns) {
 	var t = (2 * elm$core$Basics$pi) * (turns - 0.25);
 	var radius = '320';
@@ -5489,7 +5521,7 @@ var author$project$Main$viewFace = function (turns) {
 		200 + (length * elm$core$Basics$cos(t)));
 	var yStr = elm$core$String$fromFloat(
 		200 + (length * elm$core$Basics$sin(t)));
-	var color = '#f00';
+	var color = '#fff';
 	return A2(
 		elm$svg$Svg$g,
 		_List_fromArray(
@@ -5500,8 +5532,7 @@ var author$project$Main$viewFace = function (turns) {
 					elm$core$Basics$append,
 					'',
 					_List_fromArray(
-						['translate(', xStr, ', ', yStr, ')']))),
-				elm$svg$Svg$Attributes$fillOpacity(opacity)
+						['translate(', xStr, ', ', yStr, ')'])))
 			]),
 		_List_fromArray(
 			[
@@ -5515,172 +5546,42 @@ var author$project$Main$viewFace = function (turns) {
 						elm$svg$Svg$Attributes$fill(color)
 					]),
 				_List_Nil),
-				A2(
-				elm$svg$Svg$line,
-				_List_fromArray(
-					[
-						elm$svg$Svg$Attributes$x1('0'),
-						elm$svg$Svg$Attributes$y1('-320'),
-						elm$svg$Svg$Attributes$x2('0'),
-						elm$svg$Svg$Attributes$y2('-300'),
-						elm$svg$Svg$Attributes$stroke('black'),
-						elm$svg$Svg$Attributes$strokeWidth('2')
-					]),
-				_List_Nil),
-				A2(
-				elm$svg$Svg$circle,
-				_List_fromArray(
-					[
-						elm$svg$Svg$Attributes$cx('0'),
-						elm$svg$Svg$Attributes$cy('0'),
-						elm$svg$Svg$Attributes$r('2'),
-						elm$svg$Svg$Attributes$fill('red'),
-						elm$svg$Svg$Attributes$transform('rotate(10, 0, 0)')
-					]),
-				_List_Nil),
-				A2(
-				elm$svg$Svg$line,
-				_List_fromArray(
-					[
-						elm$svg$Svg$Attributes$x1('0'),
-						elm$svg$Svg$Attributes$y1('-320'),
-						elm$svg$Svg$Attributes$x2('0'),
-						elm$svg$Svg$Attributes$y2('-300'),
-						elm$svg$Svg$Attributes$stroke('black'),
-						elm$svg$Svg$Attributes$strokeWidth('2'),
-						elm$svg$Svg$Attributes$transform('rotate(30, 0, 0)')
-					]),
-				_List_Nil),
-				A2(
-				elm$svg$Svg$line,
-				_List_fromArray(
-					[
-						elm$svg$Svg$Attributes$x1('0'),
-						elm$svg$Svg$Attributes$y1('-320'),
-						elm$svg$Svg$Attributes$x2('0'),
-						elm$svg$Svg$Attributes$y2('-300'),
-						elm$svg$Svg$Attributes$stroke('black'),
-						elm$svg$Svg$Attributes$strokeWidth('2'),
-						elm$svg$Svg$Attributes$transform('rotate(60, 0, 0)')
-					]),
-				_List_Nil),
-				A2(
-				elm$svg$Svg$line,
-				_List_fromArray(
-					[
-						elm$svg$Svg$Attributes$x1('0'),
-						elm$svg$Svg$Attributes$y1('-320'),
-						elm$svg$Svg$Attributes$x2('0'),
-						elm$svg$Svg$Attributes$y2('-300'),
-						elm$svg$Svg$Attributes$stroke('black'),
-						elm$svg$Svg$Attributes$strokeWidth('2'),
-						elm$svg$Svg$Attributes$transform('rotate(90, 0, 0)')
-					]),
-				_List_Nil),
-				A2(
-				elm$svg$Svg$line,
-				_List_fromArray(
-					[
-						elm$svg$Svg$Attributes$x1('0'),
-						elm$svg$Svg$Attributes$y1('-320'),
-						elm$svg$Svg$Attributes$x2('0'),
-						elm$svg$Svg$Attributes$y2('-300'),
-						elm$svg$Svg$Attributes$stroke('black'),
-						elm$svg$Svg$Attributes$strokeWidth('2'),
-						elm$svg$Svg$Attributes$transform('rotate(120, 0, 0)')
-					]),
-				_List_Nil),
-				A2(
-				elm$svg$Svg$line,
-				_List_fromArray(
-					[
-						elm$svg$Svg$Attributes$x1('0'),
-						elm$svg$Svg$Attributes$y1('-320'),
-						elm$svg$Svg$Attributes$x2('0'),
-						elm$svg$Svg$Attributes$y2('-300'),
-						elm$svg$Svg$Attributes$stroke('black'),
-						elm$svg$Svg$Attributes$strokeWidth('2'),
-						elm$svg$Svg$Attributes$transform('rotate(150, 0, 0)')
-					]),
-				_List_Nil),
-				A2(
-				elm$svg$Svg$line,
-				_List_fromArray(
-					[
-						elm$svg$Svg$Attributes$x1('0'),
-						elm$svg$Svg$Attributes$y1('-320'),
-						elm$svg$Svg$Attributes$x2('0'),
-						elm$svg$Svg$Attributes$y2('-300'),
-						elm$svg$Svg$Attributes$stroke('black'),
-						elm$svg$Svg$Attributes$strokeWidth('2'),
-						elm$svg$Svg$Attributes$transform('rotate(180, 0, 0)')
-					]),
-				_List_Nil),
-				A2(
-				elm$svg$Svg$line,
-				_List_fromArray(
-					[
-						elm$svg$Svg$Attributes$x1('0'),
-						elm$svg$Svg$Attributes$y1('-320'),
-						elm$svg$Svg$Attributes$x2('0'),
-						elm$svg$Svg$Attributes$y2('-300'),
-						elm$svg$Svg$Attributes$stroke('black'),
-						elm$svg$Svg$Attributes$strokeWidth('2'),
-						elm$svg$Svg$Attributes$transform('rotate(210, 0, 0)')
-					]),
-				_List_Nil),
-				A2(
-				elm$svg$Svg$line,
-				_List_fromArray(
-					[
-						elm$svg$Svg$Attributes$x1('0'),
-						elm$svg$Svg$Attributes$y1('-320'),
-						elm$svg$Svg$Attributes$x2('0'),
-						elm$svg$Svg$Attributes$y2('-300'),
-						elm$svg$Svg$Attributes$stroke('black'),
-						elm$svg$Svg$Attributes$strokeWidth('2'),
-						elm$svg$Svg$Attributes$transform('rotate(240, 0, 0)')
-					]),
-				_List_Nil),
-				A2(
-				elm$svg$Svg$line,
-				_List_fromArray(
-					[
-						elm$svg$Svg$Attributes$x1('0'),
-						elm$svg$Svg$Attributes$y1('-320'),
-						elm$svg$Svg$Attributes$x2('0'),
-						elm$svg$Svg$Attributes$y2('-300'),
-						elm$svg$Svg$Attributes$stroke('black'),
-						elm$svg$Svg$Attributes$strokeWidth('2'),
-						elm$svg$Svg$Attributes$transform('rotate(270, 0, 0)')
-					]),
-				_List_Nil),
-				A2(
-				elm$svg$Svg$line,
-				_List_fromArray(
-					[
-						elm$svg$Svg$Attributes$x1('0'),
-						elm$svg$Svg$Attributes$y1('-320'),
-						elm$svg$Svg$Attributes$x2('0'),
-						elm$svg$Svg$Attributes$y2('-300'),
-						elm$svg$Svg$Attributes$stroke('black'),
-						elm$svg$Svg$Attributes$strokeWidth('2'),
-						elm$svg$Svg$Attributes$transform('rotate(300, 0, 0)')
-					]),
-				_List_Nil),
-				A2(
-				elm$svg$Svg$line,
-				_List_fromArray(
-					[
-						elm$svg$Svg$Attributes$x1('0'),
-						elm$svg$Svg$Attributes$y1('-320'),
-						elm$svg$Svg$Attributes$x2('0'),
-						elm$svg$Svg$Attributes$y2('-300'),
-						elm$svg$Svg$Attributes$stroke('black'),
-						elm$svg$Svg$Attributes$strokeWidth('2'),
-						elm$svg$Svg$Attributes$transform('rotate(330, 0, 0)')
-					]),
-				_List_Nil)
+				A2(author$project$Main$viewMarker, 25, 0),
+				A2(author$project$Main$viewMarker, 10, 10),
+				A2(author$project$Main$viewMarker, 10, 20),
+				A2(author$project$Main$viewMarker, 25, 30),
+				A2(author$project$Main$viewMarker, 10, 40),
+				A2(author$project$Main$viewMarker, 10, 50),
+				A2(author$project$Main$viewMarker, 25, 60),
+				A2(author$project$Main$viewMarker, 10, 70),
+				A2(author$project$Main$viewMarker, 10, 80),
+				A2(author$project$Main$viewMarker, 25, 90),
+				A2(author$project$Main$viewMarker, 10, 100),
+				A2(author$project$Main$viewMarker, 10, 110),
+				A2(author$project$Main$viewMarker, 25, 120),
+				A2(author$project$Main$viewMarker, 10, 130),
+				A2(author$project$Main$viewMarker, 10, 140),
+				A2(author$project$Main$viewMarker, 25, 150),
+				A2(author$project$Main$viewMarker, 10, 160),
+				A2(author$project$Main$viewMarker, 10, 170),
+				A2(author$project$Main$viewMarker, 25, 180),
+				A2(author$project$Main$viewMarker, 10, 190),
+				A2(author$project$Main$viewMarker, 10, 200),
+				A2(author$project$Main$viewMarker, 25, 210),
+				A2(author$project$Main$viewMarker, 10, 220),
+				A2(author$project$Main$viewMarker, 10, 230),
+				A2(author$project$Main$viewMarker, 25, 240),
+				A2(author$project$Main$viewMarker, 10, 250),
+				A2(author$project$Main$viewMarker, 10, 260),
+				A2(author$project$Main$viewMarker, 25, 270),
+				A2(author$project$Main$viewMarker, 10, 280),
+				A2(author$project$Main$viewMarker, 10, 290),
+				A2(author$project$Main$viewMarker, 25, 300),
+				A2(author$project$Main$viewMarker, 10, 310),
+				A2(author$project$Main$viewMarker, 10, 320),
+				A2(author$project$Main$viewMarker, 25, 330),
+				A2(author$project$Main$viewMarker, 10, 340),
+				A2(author$project$Main$viewMarker, 10, 350)
 			]));
 };
 var elm$svg$Svg$Attributes$strokeLinecap = _VirtualDom_attribute('stroke-linecap');
@@ -5710,6 +5611,18 @@ var author$project$Main$viewHand = F3(
 				]),
 			_List_Nil);
 	});
+var elm$svg$Svg$Attributes$fillOpacity = _VirtualDom_attribute('fill-opacity');
+var author$project$Main$viewPortal = A2(
+	elm$svg$Svg$circle,
+	_List_fromArray(
+		[
+			elm$svg$Svg$Attributes$cx('200'),
+			elm$svg$Svg$Attributes$cy('200'),
+			elm$svg$Svg$Attributes$r('120'),
+			elm$svg$Svg$Attributes$fill('#aaa'),
+			elm$svg$Svg$Attributes$fillOpacity('0.5')
+		]),
+	_List_Nil);
 var elm$svg$Svg$svg = elm$svg$Svg$trustedNode('svg');
 var elm$svg$Svg$Attributes$height = _VirtualDom_attribute('height');
 var elm$svg$Svg$Attributes$style = _VirtualDom_attribute('style');
@@ -5803,6 +5716,7 @@ var author$project$Main$view = function (model) {
 		_List_fromArray(
 			[
 				author$project$Main$viewFace(second / 60),
+				author$project$Main$viewPortal,
 				A3(author$project$Main$viewHand, 1, 120, second / 60)
 			]));
 };
